@@ -2,14 +2,14 @@ from products import dao
 
 
 class Product:
-    def __init__(self, id: int, name: str, description: str, cost: float, qty: int = 0):
+    def __init__ (self,id: int, name: str, description: str, cost: float, qty: int = 0):
         self.id = id
         self.name = name
         self.description = description
         self.cost = cost
         self.qty = qty
 
-    def load(data):
+    def load(self,data):
         return Product(data['id'], data['name'], data['description'], data['cost'], data['qty'])
 
 
@@ -17,14 +17,14 @@ def list_products() -> list[Product]:
     products = dao.list_products()
     result = []
     for product in products:
-        result.append(Product.load(product))
+        result.append(Product(0, "", "", 0.0).load(product))
     
     return result
 
 
 
 def get_product(product_id: int) -> Product:
-    return Product.load(dao.get_product(product_id))
+    return Product(0, "", "", 0.0).load(dao.get_product(product_id))
 
 
 def add_product(product: dict):
